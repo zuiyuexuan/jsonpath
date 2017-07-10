@@ -1,8 +1,8 @@
 {
-  "name": "jsonpath",
-  "description": "Query JavaScript objects with JSONPath expressions. Robust / safe JSONPath engine for Node.js.",
-  "version": "0.2.11",
-  "author": "david@fmail.co.uk",
+  "name": "jsonpath-pa",
+  "description": "Query JavaScript objects with JSONPath expressions.",
+  "version": "0.2.12",
+  "author": "729882885@qq.com",
   "scripts": {
     "postinstall": "node lib/aesprim.js > generated/aesprim-browser.js",
     "test": "mocha -u tdd test && jscs lib && jshint lib",
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dchester/jsonpath"
+    "url": "https://github.com/zuiyuexuan/jsonpath"
   },
   "keywords": [
     "JSONPath",
