@@ -1,0 +1,129 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@3.9.5
+3 info using node@v6.2.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/fangpeiqing507/gitlab/jsonpath',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/fangpeiqing507/.npm/jsonpath-pa/0.2.16/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/fangpeiqing507/.npm correctMkdir not in flight; initializing
+10 info lifecycle jsonpath-pa@0.2.16~prepublish: jsonpath-pa@0.2.16
+11 silly lifecycle jsonpath-pa@0.2.16~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/Users/fangpeiqing507/.npm/jsonpath-pa/0.2.16/package.tgz',
+12 verbose tar pack   '/Users/fangpeiqing507/gitlab/jsonpath' ]
+13 verbose tarball /Users/fangpeiqing507/.npm/jsonpath-pa/0.2.16/package.tgz
+14 verbose folder /Users/fangpeiqing507/gitlab/jsonpath
+15 verbose addLocalTarball adding from inside cache /Users/fangpeiqing507/.npm/jsonpath-pa/0.2.16/package.tgz
+16 verbose correctMkdir /Users/fangpeiqing507/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd jsonpath-pa@0.2.16
+18 verbose afterAdd /Users/fangpeiqing507/.npm/jsonpath-pa/0.2.16/package/package.json not in flight; writing
+19 verbose correctMkdir /Users/fangpeiqing507/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /Users/fangpeiqing507/.npm/jsonpath-pa/0.2.16/package/package.json written
+21 silly publish { name: 'jsonpath-pa',
+21 silly publish   description: 'Query JavaScript objects with JSONPath expressions.',
+21 silly publish   version: '0.2.16',
+21 silly publish   author: { name: '729882885@qq.com' },
+21 silly publish   scripts:
+21 silly publish    { postinstall: 'node lib/aesprim.js > generated/aesprim-browser.js',
+21 silly publish      test: 'mocha -u tdd test && jscs lib && jshint lib',
+21 silly publish      generate: 'node bin/generate_parser.js > generated/parser.js' },
+21 silly publish   dependencies:
+21 silly publish    { esprima: '1.2.2',
+21 silly publish      jison: '0.4.13',
+21 silly publish      'static-eval': '0.2.3',
+21 silly publish      underscore: '1.7.0' },
+21 silly publish   browser: { './lib/aesprim.js': './generated/aesprim-browser.js' },
+21 silly publish   devDependencies:
+21 silly publish    { grunt: '0.4.5',
+21 silly publish      'grunt-browserify': '3.8.0',
+21 silly publish      'grunt-cli': '0.1.13',
+21 silly publish      'grunt-contrib-uglify': '0.9.1',
+21 silly publish      jscs: '1.10.0',
+21 silly publish      jshint: '2.6.0',
+21 silly publish      mocha: '2.1.0' },
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+https://github.com/zuiyuexuan/jsonpath.git' },
+21 silly publish   keywords:
+21 silly publish    [ 'JSONPath',
+21 silly publish      'jsonpath',
+21 silly publish      'json-path',
+21 silly publish      'object',
+21 silly publish      'traversal',
+21 silly publish      'json',
+21 silly publish      'path',
+21 silly publish      'data structures' ],
+21 silly publish   license: 'MIT',
+21 silly publish   readme: '[![Build Status](https://travis-ci.org/dchester/jsonpath.png?branch=master)](https://travis-ci.org/dchester/jsonpath)\n\n# jsonpath\n\nQuery JavaScript objects with JSONPath expressions.  Robust / safe JSONPath engine for Node.js.\n\n\n## Query Example\n\n```javascript\nvar cities = [\n  { name: "London", "population": 8615246 },\n  { name: "Berlin", "population": 3517424 },\n  { name: "Madrid", "population": 3165235 },\n  { name: "Rome",   "population": 2870528 }\n];\n\nvar jp = require(\'jsonpath\');\nvar names = jp.query(cities, \'$..name\');\n\n// [ "London", "Berlin", "Madrid", "Rome" ]\n```\n\n## Install\n\nInstall from npm:\n```bash\n$ npm install jsonpath-pa\n```\n\n## JSONPath Syntax\n\nHere are syntax and examples adapted from [Stefan Goessner\'s original post](http://goessner.net/articles/JsonPath/) introducing JSONPath in 2007.\n\nJSONPath         | Description\n-----------------|------------\n`$`               | The root object/element\n`@`                | The current object/element\n`.`                | Child member operator\n`..`\t         | Recursive descendant operator; JSONPath borrows this syntax from E4X\n`*`\t         | Wildcard matching all objects/elements regardless their names\n`[]`\t         | Subscript operator\n`[,]`\t         | Union operator for alternate names or array indices as a set\n`[start:end:step]` | Array slice operator borrowed from ES4 / Python\n`?()`              | Applies a filter (script) expression via static evaluation\n`()`\t         | Script expression via static evaluation \n\nGiven this sample data set, see example expressions below:\n\n```javascript\n{\n  "store": {\n    "book": [ \n      {\n        "category": "reference",\n        "author": "Nigel Rees",\n        "title": "Sayings of the Century",\n        "price": 8.95\n      }, {\n        "category": "fiction",\n        "author": "Evelyn Waugh",\n        "title": "Sword of Honour",\n        "price": 12.99\n      }, {\n        "category": "fiction",\n        "author": "Herman Melville",\n        "title": "Moby Dick",\n        "isbn": "0-553-21311-3",\n        "price": 8.99\n      }, {\n         "category": "fiction",\n        "author": "J. R. R. Tolkien",\n        "title": "The Lord of the Rings",\n        "isbn": "0-395-19395-8",\n        "price": 22.99\n      }\n    ],\n    "bicycle": {\n      "color": "red",\n      "price": 19.95\n    }\n  }\n}\n```\n\nExample JSONPath expressions:\n\nJSONPath                      | Description\n------------------------------|------------\n`$.store.book[*].author`       | The authors of all books in the store\n`$..author`                     | All authors\n`$.store.*`                    | All things in store, which are some books and a red bicycle\n`$.store..price`                | The price of everything in the store\n`$..book[2]`                    | The third book\n`$..book[(@.length-1)]`         | The last book via script subscript\n`$..book[-1:]`                  | The last book via slice\n`$..book[0,1]`                  | The first two books via subscript union\n`$..book[:2]`                  | The first two books via subscript array slice\n`$..book[?(@.isbn)]`            | Filter all books with isbn number\n`$..book[?(@.price<10)]`        | Filter all books cheaper than 10\n`$..book[?(@.price==8.95)]`        | Filter all books that cost 8.95\n`$..book[?(@.price<30 && @.category=="fiction")]`        | Filter all fiction books cheaper than 30\n`$..*`                         | All members of JSON structure\n\n\n## Methods\n\n#### jp.query(obj, pathExpression[, count])\n\nFind elements in `obj` matching `pathExpression`.  Returns an array of elements that satisfy the provided JSONPath expression, or an empty array if none were matched.  Returns only first `count` elements if specified.\n\n```javascript\nvar authors = jp.query(data, \'$..author\');\n// [ \'Nigel Rees\', \'Evelyn Waugh\', \'Herman Melville\', \'J. R. R. Tolkien\' ]\n```\n\n#### jp.paths(obj, pathExpression[, count])\n\nFind paths to elements in `obj` matching `pathExpression`.  Returns an array of element paths that satisfy the provided JSONPath expression. Each path is itself an array of keys representing the location within `obj` of the matching element.  Returns only first `count` paths if specified.\n\n\n```javascript\nvar paths = jp.paths(data, \'$..author\');\n// [\n//   [\'$\', \'store\', \'book\', 0, \'author\'] },\n//   [\'$\', \'store\', \'book\', 1, \'author\'] },\n//   [\'$\', \'store\', \'book\', 2, \'author\'] },\n//   [\'$\', \'store\', \'book\', 3, \'author\'] }\n// ]\n```\n\n#### jp.nodes(obj, pathExpression[, count])\n\nFind elements and their corresponding paths in `obj` matching `pathExpression`.  Returns an array of node objects where each node has a `path` containing an array of keys representing the location within `obj`, and a `value` pointing to the matched element.  Returns only first `count` nodes if specified.\n\n```javascript\nvar nodes = jp.nodes(data, \'$..author\');\n// [\n//   { path: [\'$\', \'store\', \'book\', 0, \'author\'], value: \'Nigel Rees\' },\n//   { path: [\'$\', \'store\', \'book\', 1, \'author\'], value: \'Evelyn Waugh\' },\n//   { path: [\'$\', \'store\', \'book\', 2, \'author\'], value: \'Herman Melville\' },\n//   { path: [\'$\', \'store\', \'book\', 3, \'author\'], value: \'J. R. R. Tolkien\' }\n// ]\n```\n\n#### jp.value(obj, pathExpression[, newValue])\n\nReturns the value of the first element matching `pathExpression`.  If `newValue` is provided, sets the value of the first matching element and returns the new value.\n\n#### jp.parent(obj, pathExpression)\n\nReturns the parent of the first matching element.\n\n#### jp.apply(obj, pathExpression, fn)\n\nRuns the supplied function `fn` on each matching element, and replaces each matching element with the return value from the function.  The function accepts the value of the matching element as its only parameter.  Returns matching nodes with their updated values.\n\n\n```javascript\nvar nodes = jp.apply(data, \'$..author\', function(value) { return value.toUpperCase() });\n// [\n//   { path: [\'$\', \'store\', \'book\', 0, \'author\'], value: \'NIGEL REES\' },\n//   { path: [\'$\', \'store\', \'book\', 1, \'author\'], value: \'EVELYN WAUGH\' },\n//   { path: [\'$\', \'store\', \'book\', 2, \'author\'], value: \'HERMAN MELVILLE\' },\n//   { path: [\'$\', \'store\', \'book\', 3, \'author\'], value: \'J. R. R. TOLKIEN\' }\n// ]\n```\n\n#### jp.parse(pathExpression)\n\nParse the provided JSONPath expression into path components and their associated operations.\n\n```javascript\nvar path = jp.parse(\'$..author\');\n// [\n//   { expression: { type: \'root\', value: \'$\' } },\n//   { expression: { type: \'identifier\', value: \'author\' }, operation: \'member\', scope: \'descendant\' }\n// ]\n```\n\n#### jp.stringify(path)\n\nReturns a path expression in string form, given a path.  The supplied path may either be a flat array of keys, as returned by `jp.nodes` for example, or may alternatively be a fully parsed path expression in the form of an array of path components as returned by `jp.parse`.\n\n```javascript\nvar pathExpression = jp.stringify([\'$\', \'store\', \'book\', 0, \'author\']);\n// "$.store.book[0].author"\n```\n\n## Differences from Original Implementation\n\nThis implementation aims to be compatible with Stefan Goessner\'s original implementation with a few notable exceptions described below.\n\n#### Evaluating Script Expressions\n\nScript expressions (i.e, `(...)` and `?(...)`) are statically evaluated via [static-eval](https://github.com/substack/static-eval) rather than using the underlying script engine directly.  That means both that the scope is limited to the instance variable (`@`), and only simple expressions (with no side effects) will be valid.  So for example, `?(@.length>10)` will be just fine to match arrays with more than ten elements, but `?(process.exit())` will not get evaluated since `process` would yield a `ReferenceError`.  This method is even safer than `vm.runInNewContext`, since the script engine itself is more limited and entirely distinct from the one running the application code.  See more details in the [implementation](https://github.com/substack/static-eval/blob/master/index.js) of the evaluator.\n\n#### Grammar\n\nThis project uses a formal BNF [grammar](https://github.com/dchester/jsonpath/blob/master/lib/grammar.js) to parse JSONPath expressions, an attempt at reverse-engineering the intent of the original implementation, which parses via a series of creative regular expressions.  The original regex approach can sometimes be forgiving for better or for worse (e.g., `$[\'store]` => `$[\'store\']`), and in other cases, can be just plain wrong (e.g. `[` => `$`). \n\n#### Other Minor Differences\n\nAs a result of using a real parser and static evaluation, there are some arguable bugs in the original library that have not been carried through here:\n\n- strings in subscripts may now be double-quoted\n- final `step` arguments in slice operators may now be negative\n- script expressions may now contain `.` and `@` characters not referring to instance variables\n- subscripts no longer act as character slices on string elements\n- non-ascii non-word characters are no-longer valid in member identifier names; use quoted subscript strings instead (e.g., `$[\'$\']` instead of `$.$`)\n- unions now yield real unions with no duplicates rather than concatenated results\n\n## License\n\n[MIT](LICENSE)\n\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: 'd6d999a350e200ff0e4b59a9b273319f8c75fe14',
+21 silly publish   bugs: { url: 'https://github.com/zuiyuexuan/jsonpath/issues' },
+21 silly publish   homepage: 'https://github.com/zuiyuexuan/jsonpath#readme',
+21 silly publish   _id: 'jsonpath-pa@0.2.16',
+21 silly publish   _shasum: '6f85ba1703dfd7440b5a8085539697b3e39b4764',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name jsonpath-pa
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'jsonpath-pa',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   name: 'jsonpath-pa',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/jsonpath-pa
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading /Users/fangpeiqing507/.npm/jsonpath-pa/0.2.16/package.tgz
+30 verbose request uri https://registry.npmjs.org/jsonpath-pa
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 3:59:55 PM
+33 verbose request using bearer token for auth
+34 verbose request id e565094ba07ef8b2
+35 http request PUT https://registry.npmjs.org/jsonpath-pa
+36 http 403 https://registry.npmjs.org/jsonpath-pa
+37 verbose headers { 'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   'content-length': '96',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   date: 'Wed, 12 Jul 2017 07:59:34 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-nrt6126-NRT',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1499846374.674620,VS0,VE1022',
+37 verbose headers   vary: 'Accept-Encoding, Accept' }
+38 verbose request invalidating /Users/fangpeiqing507/.npm/registry.npmjs.org/jsonpath-pa on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: "You cannot publish over the previously published version 0.2.16." : jsonpath-pa
+40 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+40 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+40 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:200:22)
+40 verbose stack     at emitTwo (events.js:106:13)
+40 verbose stack     at Request.emit (events.js:191:7)
+40 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1067:10)
+40 verbose stack     at emitOne (events.js:101:20)
+40 verbose stack     at Request.emit (events.js:188:7)
+40 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:988:12)
+41 verbose statusCode 403
+42 verbose pkgid jsonpath-pa
+43 verbose cwd /Users/fangpeiqing507/gitlab/jsonpath
+44 error Darwin 16.0.0
+45 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
+46 error node v6.2.0
+47 error npm  v3.9.5
+48 error code E403
+49 error "You cannot publish over the previously published version 0.2.16." : jsonpath-pa
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]
